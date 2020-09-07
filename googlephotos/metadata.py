@@ -16,11 +16,14 @@ class Metadata:
         params['access_token'] = access_token
 
     def list_media(self):
-        print("listing files......(may take times)")
+        print("list_media listing files......(may take times)")
         database = 'https://photoslibrary.googleapis.com/v1/mediaItems'
         lists = []
         while True:
+            print("database = " + str(database))
+            print("params = " + str(params))
             responds = requests.get(database , params = params).json()
+            print("responds = " + str(responds))
             if 'mediaItems' in responds:
                 lists.append(responds['mediaItems'].copy())
             if 'nextPageToken' in responds:
@@ -29,13 +32,14 @@ class Metadata:
                 return lists
 
     def list_album_media(self):
-        print("listing files......(may take times)")
+        print("list_album_media listing files......(may take times)")
         database = 'https://photoslibrary.googleapis.com/v1/albums'
         albums = []
         while True:
             responds = requests.get(database , params = params).json()
+            print("responds = " + str(responds))
             if 'albums' in responds:
-                albums.append(responds[kind_str].copy())
+                albums.append(responds["albums"].copy())
             if 'nextPageToken' in responds:
                 params["pageToken"] = responds["nextPageToken"]
             else:

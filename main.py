@@ -18,7 +18,7 @@ refresh_token = "fill"
 # issue 06 :
 
 def main():
-    root_path = 'C:/Users/user/Desktop/google photo/python/gphotos-download/download'
+    root_path = './_downloaded_photos'
     
     meta_list = read('local.properties')
     client_id = meta_list['client_id']
